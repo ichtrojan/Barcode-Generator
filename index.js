@@ -6,6 +6,7 @@ let express = require('express')
 let path = require('path')
 let favicon = require('serve-favicon')
 let bodyParser = require('body-parser')
+var qr = require('qr-image');
 
 // Require our Routes
 let routes = require('./routes/web')
