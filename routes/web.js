@@ -7,6 +7,6 @@ Route.get('/', (req, res, next) => {
   res.render('index')
 })
 
-Route.post('/', barcode.save)
+Route.post('/', barcode.create)
 
 module.exports = Route

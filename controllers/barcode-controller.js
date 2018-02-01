@@ -1,8 +1,17 @@
+let qr = require('qr-image')
+let file = require('fs')
+
 exports.create = (req, res, next) => {
   let text = req.body.text
-  let stamp = new Date()
+  let stamp = new Date().getTime()
 
-  var qr_svg = qr.image(text, { type: 'svg' });
-  qr_svg.pipe(require('fs').createWriteStream('barcode'+stamp'.svg'));
-  var svg_string = qr.imageSync(text, { type: 'svg' });
+  let qr_svg = qr.image(text, {
+    type: 'svg'
+  })
+
+  qr_svg.pipe(file.createWriteStream(stamp+'barcode.svg'))
+  let svg_string = qr.imageSync(text, {
+    type: 'svg'
+  })
+  console.log('Barcode created')
 }
