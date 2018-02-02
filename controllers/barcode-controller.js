@@ -9,11 +9,12 @@ exports.create = (req, res, next) => {
     type: 'svg'
   })
 
-  qr_svg.pipe(file.createWriteStream('./public/barcodes/'+stamp+'barcode.svg'))
+  let download = qr_svg.pipe(file.createWriteStream('./public/barcodes/'+stamp+'barcode.svg'))
 
   let svg_string = qr.imageSync(text, {
     type: 'svg'
   })
 
-  console.log('Barcode created')
+  console.log('barcode created')
+  res.download(download.path)
 }
